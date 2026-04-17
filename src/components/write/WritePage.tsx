@@ -15,7 +15,7 @@ type WritePageProps = {
 }
 
 export default function WritePage({ categories = [] }: WritePageProps) {
-    const { form, cover, reset } = useWriteStore()
+    const { form, cover, reset, updateForm } = useWriteStore()
     const { isPreview, closePreview } = usePreviewStore()
     const [slug, setSlug] = useState<string | null>(null)
 
@@ -65,11 +65,14 @@ export default function WritePage({ categories = [] }: WritePageProps) {
                 <WritePreview form={form} coverPreviewUrl={coverPreviewUrl} onClose={closePreview} slug={slug || undefined} />
             ) : (
                 <>
-                    <div className='flex flex-col md:flex-row h-full justify-center gap-6 px-4 md:px-6 pt-24 pb-12'>
-                        <WriteEditor />
-                        <WriteSidebar categories={categories} />
+                    <div className='flex flex-col md:flex-row justify-center gap-6 px-4 md:px-6 pt-24 pb-12'>
+                        <div className="flex-1 min-w-0">
+                            <WriteEditor />
+                        </div>
+                        <div className="md:w-80 w-full flex-shrink-0">
+                            <WriteSidebar categories={categories} />
+                        </div>
                     </div>
-
                     <WriteActions />
                 </>
             )}
