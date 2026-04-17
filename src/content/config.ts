@@ -1,3 +1,4 @@
+// src/content/config.ts
 import { defineCollection, z } from "astro:content";
 
 const blog = defineCollection({
@@ -10,6 +11,7 @@ const blog = defineCollection({
     image: z.string().optional(),
     badge: z.string().optional(),
     draft: z.boolean().default(false),
+    password: z.string().optional(), // ✅ 新增这一行
     categories: z
       .array(z.string())
       .refine((items) => new Set(items).size === items.length, {
