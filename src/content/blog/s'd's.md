@@ -6,4 +6,9 @@ draft: false
 tags: []
 categories: []
 ---
+---
+title: "我的加密文章"
+passwordProtected: true
+password: "my_secret_123"
+---
 是多少
