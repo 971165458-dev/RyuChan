@@ -1,4 +1,5 @@
 ---
+import EncryptedContent from "@components/EncryptedContent.astro";
 import BaseLayout from "@layouts/BaseLayout.astro";
 import License from "@components/widgets/License.astro";
 import PostInfo from "@components/widgets/PostInfo.astro";
@@ -90,7 +91,7 @@ const url = new URL(`/blog/${blog.slug}`, Astro.url.origin);
         id="content"
         class="prose prose-lg prose-code:text-base max-w-none text-justify prose-headings:scroll-mt-20 prose-img:rounded-2xl prose-img:mx-auto prose-img:cursor-pointer"
       >
-        <Content />
+        <EncryptedContent slug={blog.slug} encryptedContent={encryptedHtml} />
         <License
           url={url.toString()}
           title={blog.data.title}
