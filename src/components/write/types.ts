@@ -11,6 +11,7 @@ export type PublishForm = {
 	// I'll adapt to RyuChan schema: categories: string[]
 	categories: string[]
 	fileFormat: 'md' | 'mdx' // 文件格式选择
+	password?: string // 新增：文章密码
 }
 
 export type ImageItem = { id: string; type: 'url'; url: string } | { id: string; type: 'file'; file: File; previewUrl: string; filename: string; hash?: string }
