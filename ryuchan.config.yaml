@@ -55,7 +55,7 @@ site:
       href: /write
       svg: material-symbols:edit-square-outline-rounded
       target: _self
-    - id: navigation
+    - id: project
       text: 软件
       href: /navigation
       svg: material-symbols:explore-outline
@@ -76,11 +76,6 @@ site:
           href: /music
           svg: material-symbols:music-note-rounded
           target: _self
-    - id: project
-      text: 项目
-      href: /project
-      svg: material-symbols:code-blocks-outline
-      target: _self
     - id: friend
       text: 广告
       href: /friend
@@ -97,12 +92,6 @@ anime:
   tmdb:
     apiKey: 08a6bef260044f70c150251c79f2e476
     listId: '8556173'
-github:
-  owner: kobaridev
-  repo: RyuChan
-  branch: main
-  appId: 在部署端配置环境变量
-  encryptKey: wudishiduomejimo
 umami:
   enable: false
   baseUrl: https://umami.131714.xyz
