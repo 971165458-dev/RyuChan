@@ -8,9 +8,9 @@ export const BLOG_SLUG_KEY = process.env.BLOG_SLUG_KEY || ''
  * GitHub 仓库配置
  */
 export const GITHUB_CONFIG = {
-	OWNER: process.env.NEXT_PUBLIC_GITHUB_OWNER || 'RT622',
-	REPO: process.env.NEXT_PUBLIC_GITHUB_REPO || '2gou',
+	OWNER: process.env.NEXT_PUBLIC_GITHUB_OWNER || '971165458-dev',
+	REPO: process.env.NEXT_PUBLIC_GITHUB_REPO || 'RyuChan',
 	BRANCH: process.env.NEXT_PUBLIC_GITHUB_BRANCH || 'main',
-	APP_ID: process.env.NEXT_PUBLIC_GITHUB_APP_ID || '2721846',
+	APP_ID: process.env.NEXT_PUBLIC_GITHUB_APP_ID || '3405856',
 	ENCRYPT_KEY: process.env.NEXT_PUBLIC_GITHUB_ENCRYPT_KEY || 'wudishiduomejimo',
 } as const
