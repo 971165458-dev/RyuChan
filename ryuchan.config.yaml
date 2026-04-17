@@ -1,6 +1,6 @@
 site:
-  tab: RyuChan
-  title: RyuChan
+  tab: Ash857
+  title: Ash857
   description: 🌸 轻盈、优雅、纯净 —— 用文字与图片记录生活与创意
   language: zh
   favicon: /favicon.png
@@ -18,7 +18,7 @@ site:
     height: 60vh
     images:
       - https://tc.alcy.cc/q/20250908/b2d656670551cb9ea6eda7b46b6c8ec0.webp
-  icp: 萌ICP备20261117号
+  icp: ICP备20261117号
   icp_link: https://icp.gov.moe/?keyword=20261117
   pages:
     home:
@@ -110,9 +110,9 @@ umami:
   websiteId: 3f9afc6c-f0bd-4734-be15-6d053960d34d
   timezone: Asia/Shanghai
 user:
-  name: '857'
-  description: Ciallo～(∠・ω<)⌒★
-  site: https://hub.xiaozhangya.xin
+  name: 857博客
+  description: 857的个人博客，发布一些教程·软件·游戏~
+  site: https://t.me/Ash662
   avatar: /profile.png
   sidebar:
     social:
