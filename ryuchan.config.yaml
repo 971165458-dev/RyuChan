@@ -116,20 +116,19 @@ user:
   avatar: /profile.png
   sidebar:
     social:
-      - href: mqqwpa://im/chat?chat_type=wpa&uin=<1226407713>&version=1&src_type=web
+      - href: https://tool.gljlw.com/qq/?qq=1226407713
         ariaLabel: QQ
         title: QQ
         svg: ri:qq-line
-      - href: https://space.bilibili.com/1536411565
-        ariaLabel: WeChat
-        title: WeChat
-        svg: ri:wechat-fill
-      - href: >-
-          https://www.douyin.com/user/MS4wLjABAAAAeO0sqJYUgh1a26GkVPtS2yv_IOODjeqvtl4KSjvsntg?from_tab_name=main
+      - href: https://qm.qq.com/q/nSynk8DaCs
+        ariaLabel: QQ
+        title: QQ
+        svg: ri:qq-line
+      - href: https://t.me/Ash662
         ariaLabel: Telegram
         title: Telegram
         svg: ri:telegram-line
-      - href: https://weibo.com/u/7579913510
+      - href: https://t.me/dianbaodashen1
         title: Telegram
         ariaLabel: Telegram
         svg: ri:telegram-line
