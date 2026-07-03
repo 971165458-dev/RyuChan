@@ -121,13 +121,14 @@ const typedMenu = SITE_MENU as MenuItem[];
             return (
               <div class="dropdown dropdown-bottom dropdown-end min-w-0 flex-1">
                 <div tabindex="0" role="button" class:list={[
-                  "relative flex items-center justify-center w-full h-10 px-1 rounded-full transition-all duration-300 group",
+                  "relative flex flex-col items-center justify-center gap-0.5 w-full h-12 px-1 rounded-xl transition-all duration-300 group",
                   isActive ? "text-primary" : "text-base-content/60 hover:text-primary"
                 ]} aria-label={item.text}>
                   {isActive && (
                     <span class="absolute inset-0 bg-primary/10 rounded-full -z-10 scale-110"></span>
                   )}
-                  <span class="text-[10px] sm:text-xs font-bold leading-tight whitespace-nowrap">{item.text}</span>
+                  <Icon name={item.svg} class="w-4 h-4 shrink-0" />
+                  <span class="text-[9px] sm:text-[10px] font-bold leading-none whitespace-nowrap">{item.text}</span>
                 </div>
                 <ul tabindex="0" class="dropdown-content z-[100] menu p-2 shadow-2xl bg-base-100/95 backdrop-blur-xl rounded-2xl border border-white/10 w-32 mt-2">
                   {item.subItems.map((subItem) => {
@@ -150,7 +151,7 @@ const typedMenu = SITE_MENU as MenuItem[];
           <a
             href={item.href}
             class:list={[
-              "relative flex items-center justify-center min-w-0 flex-1 h-10 px-1 rounded-full transition-all duration-300 group",
+              "relative flex flex-col items-center justify-center gap-0.5 min-w-0 flex-1 h-12 px-1 rounded-xl transition-all duration-300 group",
               isActive && !isHome ? "text-primary" : "text-base-content/60 hover:text-primary"
             ]}
             aria-label={item.text}
@@ -158,7 +159,8 @@ const typedMenu = SITE_MENU as MenuItem[];
             {isActive && !isHome && (
               <span class="absolute inset-0 bg-primary/10 rounded-full -z-10 scale-110"></span>
             )}
-            <span class="text-[10px] sm:text-xs font-bold leading-tight whitespace-nowrap">{item.text}</span>
+            <Icon name={item.svg} class="w-4 h-4 shrink-0" />
+            <span class="text-[9px] sm:text-[10px] font-bold leading-none whitespace-nowrap">{item.text}</span>
           </a>
         );
       })}
