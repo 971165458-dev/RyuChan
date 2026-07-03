@@ -3,9 +3,6 @@ import { Icon } from "astro-icon/components";
 import NavEditPage from "@/components/write/NavEditPage";
 import FriendsEditPage from "@/components/write/FriendsEditPage";
 import ContactEditPage from "@/components/write/ContactEditPage";
-import AlbumGrid from "@/components/admin/AlbumGrid";
-import AlbumAdmin from "@/components/admin/AlbumAdmin";
-import AlbumToolbar from "@/components/admin/AlbumToolbar";
 import Card from "@/components/temple/Card.astro";
 import { loadNavigation } from "@/lib/load-navigation";
 import { loadFriends } from "@/lib/load-friends";
@@ -32,23 +29,6 @@ const friends = loadFriends();
       </div>
       <NavEditPage client:only="react" initialNavData={navData} />
     </Card>
-  </section>
-
-  <section id="album" class="home-section scroll-mt-28" aria-labelledby="album-title">
-    <Card class="p-5 md:p-7">
-      <div class="grid grid-cols-[1fr_auto_1fr] items-start gap-4 mb-5">
-        <div class="col-start-2 text-center">
-          <h2 id="album-title" class="text-3xl font-bold flex items-center justify-center gap-3">
-            <Icon name="lucide:camera" class="w-8 h-8 text-primary" />
-            相册
-          </h2>
-          <p class="mt-2 text-base-content/65">记录生活中的美好瞬间。</p>
-        </div>
-        <div class="justify-self-end"><AlbumToolbar client:only="react" /></div>
-      </div>
-      <AlbumGrid client:only="react" />
-    </Card>
-    <AlbumAdmin client:only="react" />
   </section>
 
   <section id="services" class="home-section scroll-mt-28" aria-labelledby="services-title">

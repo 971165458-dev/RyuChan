@@ -45,9 +45,6 @@ site:
     project:
       title: Projects
       subtitle: 展示一些个人搭建的项目，搬运工！
-    album:
-      title: Albums
-      subtitle: 记录生活中的美好瞬间，分享我的照片故事
     music:
       title: Cloud Music
       subtitle: 沉浸式享受音乐时光
@@ -67,10 +64,10 @@ site:
       href: /#navigation
       svg: material-symbols:explore-outline
       target: _self
-    - id: album
-      text: 相册
-      href: /#album
-      svg: material-symbols:photo-library-outline-rounded
+    - id: tutorial
+      text: 教程
+      href: /blog
+      svg: material-symbols:menu-book-outline-rounded
       target: _self
     - id: friend
       text: 更多服务
