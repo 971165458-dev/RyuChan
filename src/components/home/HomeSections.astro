@@ -52,14 +52,16 @@ const friends = loadFriends();
   </section>
 
   <section id="services" class="home-section scroll-mt-28" aria-labelledby="services-title">
-    <div class="mb-5 text-center">
-      <h2 id="services-title" class="text-3xl font-bold flex items-center justify-center gap-3">
-        <Icon name="material-symbols:supervisor-account-outline-rounded" class="w-8 h-8 text-primary" />
-        更多服务
-      </h2>
-      <p class="mt-2 text-base-content/65">朋友与推荐站点。</p>
-    </div>
-    <FriendsEditPage client:only="react" initialFriends={friends} />
+    <Card class="p-5 md:p-7">
+      <div class="mb-5 text-center">
+        <h2 id="services-title" class="text-3xl font-bold flex items-center justify-center gap-3">
+          <Icon name="material-symbols:supervisor-account-outline-rounded" class="w-8 h-8 text-primary" />
+          更多服务
+        </h2>
+        <p class="mt-2 text-base-content/65">朋友与推荐站点。</p>
+      </div>
+      <FriendsEditPage client:only="react" initialFriends={friends} />
+    </Card>
   </section>
 
   <section id="contact" class="home-section scroll-mt-28" aria-labelledby="contact-title">
