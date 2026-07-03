@@ -109,25 +109,17 @@ user:
   qr_wechat: /WeChat.jpg
   qr_alipay: /Alipay.jpg
   sidebar:
-    social: []
-  footer:
     social:
       - href: ''
-        title: New Link
-        ariaLabel: New Link
-        svg: ri:link
+        title: QQ
+        ariaLabel: QQ
+        svg: ri:qq-line
       - href: ''
-        title: New Link
-        ariaLabel: New Link
-        svg: ri:link
-      - href: ''
-        title: New Link
-        ariaLabel: New Link
-        svg: ri:link
-      - href: ''
-        title: New Link
-        ariaLabel: New Link
-        svg: ri:link
+        title: Telegram
+        ariaLabel: Telegram
+        svg: ri:telegram-line
+  footer:
+    social: []
 comments:
   enable: true
   type: twikoo
