@@ -14,8 +14,8 @@ const config = yaml.load(fs.readFileSync(configPath, "utf8")) as Config;
 const translationsConfig = yaml.load(fs.readFileSync(translationsPath, "utf8")) as Record<string, any>;
 
 // 网站基本信息
-export const SITE_TAB = config.site.tab;
-export const SITE_TITLE = config.site.title;
+export const SITE_TAB = String(config.site.tab);
+export const SITE_TITLE = String(config.site.title);
 // 站点标题展示类型：'text' | 'image'（默认 text）
 export const SITE_TITLE_TYPE = config.site.title_type || config.site.titleType || 'text';
 // 可选的站点标题图片（现在保存在 user 下，便于与用户信息放在一起）
