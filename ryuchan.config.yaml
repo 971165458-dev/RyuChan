@@ -109,15 +109,7 @@ user:
   qr_wechat: /WeChat.jpg
   qr_alipay: /Alipay.jpg
   sidebar:
-    social:
-      - href: ''
-        title: QQ
-        ariaLabel: QQ
-        svg: ri:qq-line
-      - href: ''
-        title: Telegram
-        ariaLabel: Telegram
-        svg: ri:telegram-line
+    social: []
   footer:
     social: []
 comments:
