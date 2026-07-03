@@ -963,3 +963,18 @@ code {
 html {
   scroll-behavior: smooth;
 }
+
+/* Global glass effect preview */
+.bg-base-100,
+.card-base,
+.card,
+.dropdown-content,
+.modal-box,
+#navbar-bg,
+#navbar-mobile > div > div {
+  background-color: oklch(var(--b1) / 0.58) !important;
+  border: 1px solid oklch(var(--bc) / 0.14) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+  backdrop-filter: blur(18px) saturate(1.25);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.14);
+}

@@ -402,15 +402,7 @@ export default function FriendsEditPage({ initialFriends = [] }: Props) {
         onChange={handleAvatarFileChange}
       />
 
-      {/* Header: Title + Toolbar */}
-      <div className="mb-8 animate-fade-in-up">
-        <div className="flex items-center justify-between mb-4">
-          <h1 className="text-3xl md:text-4xl font-bold flex items-center gap-3">
-            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-primary shrink-0" style={{ fontSize: '2.5rem' }}>
-              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-            </svg>
-            <span>Friends</span>
-          </h1>
+      <div className="flex justify-end mb-5 animate-fade-in-up">
           <div className="flex gap-3 shrink-0">
             {globalEditMode ? (
               <>
@@ -440,10 +432,6 @@ export default function FriendsEditPage({ initialFriends = [] }: Props) {
               </button>
             )}
           </div>
-        </div>
-        <p className="text-base-content/70 text-lg">
-          记录那些珍贵的友谊，分享彼此的故事。
-        </p>
       </div>
 
       {friends.length > 0 ? (

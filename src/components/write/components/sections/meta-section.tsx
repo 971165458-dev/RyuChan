@@ -59,7 +59,7 @@ export function MetaSection({ delay = 0, categories = [] }: MetaSectionProps) {
 					onChange={e => updateForm({ password: e.target.value })}
 				/>
 				<p className="text-[11px] leading-relaxed text-base-content/55">
-					设置后正文会以密文保存，读者解锁后 12 小时内无需重复输入。加密文章请使用 Markdown 格式。
+					设置后正文会以密文保存；启用每日密码后将自动使用当天的 4 位密码，并于北京时间 00:00 轮换。读者解锁后 12 小时内无需重复输入。
 				</p>
 
 				<div className="text-xs font-medium text-base-content/70">文件格式</div>
