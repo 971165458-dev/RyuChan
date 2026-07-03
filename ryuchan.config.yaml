@@ -1,6 +1,6 @@
 site:
-  tab: Ash857
-  title: Ash857
+  tab: 857
+  title: 857
   title_type: text
   description: 🌸 轻盈、优雅、纯净 —— 用文字与图片记录生活与创意
   language: zh
@@ -23,7 +23,7 @@ site:
   icp_link: https://icp.gov.moe/?keyword=20261117
   pages:
     home:
-      title: RyuChan's Blog
+      title: 857's Blog
       subtitle: 欲买桂花同载酒，终不似，少年游！
       typewriterTexts:
         - 🌸 欲买桂花同载酒，终不似，少年游！
@@ -104,7 +104,7 @@ umami:
   websiteId: 3f9afc6c-f0bd-4734-be15-6d053960d34d
   timezone: Asia/Shanghai
 user:
-  name: Ash857
+  name: 857
   description: ·账号·教程·软件·
   site: https://t.me/dianbaodashen1
   avatar: /profile.png
