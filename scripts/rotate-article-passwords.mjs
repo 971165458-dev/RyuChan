@@ -43,17 +43,21 @@ async function currentPasswords() {
 }
 
 async function rotate() {
-  const oldPasswords = await currentPasswords()
+  const files = (await filesUnder(blogDir)).filter(file => file.endsWith('.md'))
+  const encryptedPosts = []
+  for (const file of files) {
+    const source = await fs.readFile(file, 'utf8')
+    const post = splitPost(source)
+    if (/^encrypted:\s*true\s*$/m.test(post.frontmatter)) encryptedPosts.push([file, post])
+  }
+
+  const oldPasswords = encryptedPosts.length ? await currentPasswords() : { common: undefined, byFile: {} }
   let newPassword
   do newPassword = String(randomInt(1111, 10000))
   while (newPassword === oldPasswords.common)
 
-  const files = (await filesUnder(blogDir)).filter(file => file.endsWith('.md'))
   const updates = []
-  for (const file of files) {
-    const source = await fs.readFile(file, 'utf8')
-    const post = splitPost(source)
-    if (!/^encrypted:\s*true\s*$/m.test(post.frontmatter)) continue
+  for (const [file, post] of encryptedPosts) {
     const oldPassword = oldPasswords.byFile[file] || oldPasswords.byFile[path.basename(file, '.md')] || oldPasswords.common
     if (!oldPassword) throw new Error(`缺少 ${file} 的当前密码`)
     const plainText = decrypt(post.body, oldPassword)
