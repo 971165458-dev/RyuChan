@@ -111,7 +111,23 @@ user:
   sidebar:
     social: []
   footer:
-    social: []
+    social:
+      - href: ''
+        title: New Link
+        ariaLabel: New Link
+        svg: ri:link
+      - href: ''
+        title: New Link
+        ariaLabel: New Link
+        svg: ri:link
+      - href: ''
+        title: New Link
+        ariaLabel: New Link
+        svg: ri:link
+      - href: ''
+        title: New Link
+        ariaLabel: New Link
+        svg: ri:link
 comments:
   enable: true
   type: twikoo
