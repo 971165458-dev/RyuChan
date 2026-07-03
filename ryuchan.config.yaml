@@ -31,7 +31,7 @@ site:
         - 🌿 记录生活的点滴，分享美好的瞬间！
         - 📚 纸上得来终觉浅，绝知此事要躬行！
     friend:
-      title: 友人帐
+      title: 更多服务
       subtitle: 记录那些珍贵的友谊，分享彼此的故事
     about:
       title: About Me
@@ -63,34 +63,24 @@ site:
       svg: material-symbols:edit-square-outline-rounded
       target: _self
     - id: navigation
-      text: 导航
+      text: 网站导航
       href: /navigation
       svg: material-symbols:explore-outline
-      target: _self
-    - id: anime
-      text: 追番
-      href: /anime
-      svg: material-symbols:movie-outline
       target: _self
     - id: album
       text: 相册
       href: /album
       svg: material-symbols:photo-library-outline-rounded
       target: _self
-    - id: music
-      text: 音乐
-      href: /music
-      svg: material-symbols:music-note-rounded
-      target: _self
-    - id: project
-      text: 项目
-      href: /project
-      svg: material-symbols:code-blocks-outline
-      target: _self
     - id: friend
-      text: 友人帐
+      text: 更多服务
       href: /friend
       svg: material-symbols:supervisor-account-outline-rounded
+      target: _self
+    - id: contact
+      text: 联系我
+      href: /about
+      svg: material-symbols:contact-mail-outline
       target: _self
   titleType: image
 anime:
