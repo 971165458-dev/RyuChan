@@ -4,6 +4,7 @@ import { GITHUB_CONFIG } from '@/consts'
 import { parseFrontmatter } from './frontmatter'
 import type { PublishForm } from '@/components/write/types'
 import dayjs from 'dayjs'
+import { decrypt } from './aes256-util'
 
 export async function loadBlog(slug: string): Promise<{ form: PublishForm, cover?: string }> {
     let token: string | undefined
@@ -48,7 +49,18 @@ export async function loadBlog(slug: string): Promise<{ form: PublishForm, cover
         throw new Error('Blog not found')
     }
 
-    const { data, content: md } = parseFrontmatter(content)
+    const { data, content: body } = parseFrontmatter(content)
+    let md = body
+    let password = ''
+    if (data.encrypted) {
+        password = window.prompt('请输入文章密码以继续编辑') || ''
+        if (!password) throw new Error('已取消加密文章编辑')
+        try {
+            md = await decrypt(body.trim(), password)
+        } catch {
+            throw new Error('文章密码错误')
+        }
+    }
 
     // 根据文件路径确定文件格式
     const fileFormat = path.endsWith('.mdx') ? 'mdx' : 'md';
@@ -61,6 +73,7 @@ export async function loadBlog(slug: string): Promise<{ form: PublishForm, cover
         date: data.pubDate ? dayjs(data.pubDate).format('YYYY-MM-DDTHH:mm') : '',
         summary: data.description || '',
         hidden: data.draft || false,
+        password,
         categories: data.categories || [],
         badge: data.badge || '',
         fileFormat

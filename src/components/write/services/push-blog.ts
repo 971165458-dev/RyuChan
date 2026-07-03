@@ -6,6 +6,7 @@ import type { ImageItem, PublishForm } from '../types'
 import { getFileExt, formatDateTimeLocal } from '@/lib/utils'
 import { toast } from 'sonner'
 import { stringifyFrontmatter } from '@/lib/frontmatter'
+import { encrypt } from '@/lib/aes256-util'
 
 export type PushBlogParams = {
     form: PublishForm
@@ -94,6 +95,12 @@ export async function pushBlog(params: PushBlogParams): Promise<void> {
 
         toast.loading('正在创建文章内容...', { id: toastId })
 
+        const password = form.password?.trim() || ''
+        if (password && form.fileFormat === 'mdx') {
+            throw new Error('加密文章暂不支持 MDX，请选择 Markdown 格式')
+        }
+        const bodyToUpload = password ? await encrypt(mdToUpload, password) : mdToUpload
+
         const dateStr = form.date || formatDateTimeLocal()
         const frontmatter = {
             title: form.title,
@@ -101,11 +108,12 @@ export async function pushBlog(params: PushBlogParams): Promise<void> {
             pubDate: dateStr,
             image: coverPath,
             draft: form.hidden,
+            encrypted: Boolean(password),
             tags: form.tags,
             categories: form.categories,
             badge: form.badge
         }
-        const finalContent = stringifyFrontmatter(frontmatter, mdToUpload)
+        const finalContent = stringifyFrontmatter(frontmatter, bodyToUpload)
 
         toast.loading('📝 正在生成文章内容...', { id: toastId })
         const mdBlob = await createBlob(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, toBase64Utf8(finalContent), 'base64')

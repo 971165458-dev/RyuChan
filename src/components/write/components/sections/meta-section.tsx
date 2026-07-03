@@ -44,6 +44,19 @@ export function MetaSection({ delay = 0, categories = [] }: MetaSectionProps) {
 					onChange={e => updateForm({ badge: e.target.value })}
 				/>
 
+				<div className="text-xs font-medium text-base-content/70">文章密码</div>
+				<input
+					type="password"
+					autoComplete="new-password"
+					placeholder="留空表示不加密"
+					className="input input-bordered w-full bg-base-100 focus:input-primary text-sm"
+					value={form.password || ''}
+					onChange={e => updateForm({ password: e.target.value })}
+				/>
+				<p className="text-[11px] leading-relaxed text-base-content/55">
+					设置后正文会以密文保存，读者解锁后 12 小时内无需重复输入。加密文章请使用 Markdown 格式。
+				</p>
+
 				<div className="text-xs font-medium text-base-content/70">文件格式</div>
 				<CustomSelect
 					value={form.fileFormat}
