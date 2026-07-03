@@ -64,22 +64,22 @@ site:
       target: _self
     - id: navigation
       text: 网站导航
-      href: /navigation
+      href: /#navigation
       svg: material-symbols:explore-outline
       target: _self
     - id: album
       text: 相册
-      href: /album
+      href: /#album
       svg: material-symbols:photo-library-outline-rounded
       target: _self
     - id: friend
       text: 更多服务
-      href: /friend
+      href: /#services
       svg: material-symbols:supervisor-account-outline-rounded
       target: _self
     - id: contact
       text: 联系我
-      href: /about
+      href: /#contact
       svg: material-symbols:contact-mail-outline
       target: _self
   titleType: image
