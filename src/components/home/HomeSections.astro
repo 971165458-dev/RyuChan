@@ -23,8 +23,8 @@ const friends = loadFriends();
 <div class="flex flex-col gap-12 mt-12">
   <section id="navigation" class="home-section scroll-mt-28" aria-labelledby="navigation-title">
     <Card class="p-5 md:p-7">
-      <div class="mb-5">
-        <h2 id="navigation-title" class="text-3xl font-bold flex items-center gap-3">
+      <div class="mb-5 text-center">
+        <h2 id="navigation-title" class="text-3xl font-bold flex items-center justify-center gap-3">
           <Icon name="material-symbols:explore-outline" class="w-8 h-8 text-primary" />
           网站导航
         </h2>
@@ -36,15 +36,15 @@ const friends = loadFriends();
 
   <section id="album" class="home-section scroll-mt-28" aria-labelledby="album-title">
     <Card class="p-5 md:p-7">
-      <div class="flex items-center justify-between gap-4 mb-5">
-        <div>
-          <h2 id="album-title" class="text-3xl font-bold flex items-center gap-3">
+      <div class="grid grid-cols-[1fr_auto_1fr] items-start gap-4 mb-5">
+        <div class="col-start-2 text-center">
+          <h2 id="album-title" class="text-3xl font-bold flex items-center justify-center gap-3">
             <Icon name="lucide:camera" class="w-8 h-8 text-primary" />
             相册
           </h2>
           <p class="mt-2 text-base-content/65">记录生活中的美好瞬间。</p>
         </div>
-        <AlbumToolbar client:only="react" />
+        <div class="justify-self-end"><AlbumToolbar client:only="react" /></div>
       </div>
       <AlbumGrid client:only="react" />
     </Card>
@@ -52,8 +52,8 @@ const friends = loadFriends();
   </section>
 
   <section id="services" class="home-section scroll-mt-28" aria-labelledby="services-title">
-    <div class="mb-5">
-      <h2 id="services-title" class="text-3xl font-bold flex items-center gap-3">
+    <div class="mb-5 text-center">
+      <h2 id="services-title" class="text-3xl font-bold flex items-center justify-center gap-3">
         <Icon name="material-symbols:supervisor-account-outline-rounded" class="w-8 h-8 text-primary" />
         更多服务
       </h2>
@@ -64,7 +64,7 @@ const friends = loadFriends();
 
   <section id="contact" class="home-section scroll-mt-28" aria-labelledby="contact-title">
     <Card class="p-6 md:p-8">
-      <h2 id="contact-title" class="text-3xl font-bold flex items-center gap-3 mb-7">
+      <h2 id="contact-title" class="text-3xl font-bold flex items-center justify-center gap-3 mb-7 text-center">
         <Icon name="material-symbols:contact-mail-outline" class="w-8 h-8 text-primary" />
         联系我
       </h2>
