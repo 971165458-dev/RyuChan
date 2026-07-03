@@ -23,7 +23,6 @@ export default function NavEditPage({ initialNavData = [] }: Props) {
   const [globalEditMode, setGlobalEditMode] = useState(false)
   const [saving, setSaving] = useState(false)
   const [pendingAvatars, setPendingAvatars] = useState<Record<string, PendingAvatar>>({})
-  const [searchQuery, setSearchQuery] = useState('')
   const [activeFilter, setActiveFilter] = useState('all')
   const { isAuth, setPrivateKey } = useAuthStore()
   const keyInputRef = useRef<HTMLInputElement>(null)
@@ -71,13 +70,8 @@ export default function NavEditPage({ initialNavData = [] }: Props) {
   }, [navData])
 
   const filteredFlatItems = useMemo(() => {
-    const q = searchQuery.toLowerCase()
-    return flatItems.filter(item => {
-      const ms = !q || item.name.toLowerCase().includes(q) || item.description.toLowerCase().includes(q)
-      const mf = activeFilter === 'all' || item._itemCategory === activeFilter
-      return ms && mf
-    })
-  }, [flatItems, searchQuery, activeFilter])
+    return flatItems.filter(item => activeFilter === 'all' || item._itemCategory === activeFilter)
+  }, [flatItems, activeFilter])
 
   const hasChanges = () => JSON.stringify(navData) !== JSON.stringify(originalNavData) || Object.keys(pendingAvatars).length > 0
 
@@ -640,27 +634,18 @@ export default function NavEditPage({ initialNavData = [] }: Props) {
       <Toaster richColors position="top-center" toastOptions={{ className: 'shadow-xl rounded-2xl border-2 border-primary/20 backdrop-blur-sm', style: { fontSize: '1rem', padding: '14px 20px', borderRadius: '12px' }, duration: 5000 }} />
       <input ref={keyInputRef} type="file" accept=".pem" className="hidden" onChange={async e => { const f = e.target.files?.[0]; if (f) await onChoosePrivateKey(f); if (e.currentTarget) e.currentTarget.value = '' }} />
 
-      <div className="nav-container min-h-screen bg-base-200/30 -mt-8 pt-8 pb-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300">
-        <div className="max-w-7xl mx-auto space-y-8">
+      <div className="nav-container transition-colors duration-300">
+        <div className="space-y-6">
 
-          <div className="flex items-center justify-between animate-fade-in-up">
-            <div />
-            {globalEditMode && (
+          <div className="flex items-center justify-end animate-fade-in-up">
+            {globalEditMode ? (
               <div className="flex gap-3 shrink-0">
                 <button onClick={handleCancelGlobal} className="btn btn-sm btn-ghost rounded-xl border bg-base-100/60 font-semibold">取消</button>
                 <button onClick={handleImportKey} disabled={isAuth} className={`btn btn-sm rounded-xl font-semibold ${isAuth ? 'btn-ghost text-success' : 'btn-outline'}`}>{isAuth ? '已导入' : '导入密钥'}</button>
                 <button onClick={openAddPage} className="btn btn-sm btn-outline gap-1 rounded-xl font-semibold">{svg.plus} 添加</button>
                 <button onClick={handleSaveAll} disabled={saving} className="btn btn-sm btn-primary px-6 shadow-lg shadow-primary/20 font-semibold">{saving ? '保存中...' : '保存'}</button>
               </div>
-            )}
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="relative flex-1 max-w-2xl">
-              <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">{svg.search}</div>
-              <input type="text" className="block w-full pl-11 pr-4 py-3 bg-base-100 border-none rounded-3xl text-base-content placeholder-base-content/40 focus:ring-2 focus:ring-primary/50 focus:bg-base-100 shadow-sm transition-all duration-300" placeholder="搜索资源..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
-            </div>
-            {!globalEditMode && (
+            ) : (
               <button onClick={handleEnterEditMode} className="btn btn-sm btn-primary gap-2 rounded-xl font-semibold shadow-lg shadow-primary/20 shrink-0">{svg.edit} 编辑</button>
             )}
           </div>
@@ -678,7 +663,7 @@ export default function NavEditPage({ initialNavData = [] }: Props) {
                 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-base-content/40"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
               </div>
               <h3 className="text-lg font-medium text-base-content">未找到相关资源</h3>
-              <p className="mt-2 text-base-content/50">请尝试更换关键词或分类</p>
+              <p className="mt-2 text-base-content/50">当前分类暂无资源</p>
             </div>
           )}
 
