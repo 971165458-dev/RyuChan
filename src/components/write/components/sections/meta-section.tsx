@@ -36,13 +36,18 @@ export function MetaSection({ delay = 0, categories = [] }: MetaSectionProps) {
 					onChange={e => updateForm({ summary: e.target.value })}
 				/>
 
-				<div className="text-xs font-medium text-base-content/70">Badge</div>
-				<input
-					placeholder='Pin - 置顶文章（可选）'
-					className='input input-bordered w-full bg-base-100 focus:input-primary text-sm'
-					value={form.badge || ''}
-					onChange={e => updateForm({ badge: e.target.value })}
-				/>
+				<div className='flex items-center gap-2 rounded-xl border border-base-200 bg-base-200/40 px-3 py-2.5'>
+					<input
+						type='checkbox'
+						id='pinned-check'
+						checked={form.badge === 'Pin'}
+						onChange={e => updateForm({ badge: e.target.checked ? 'Pin' : '' })}
+						className='checkbox checkbox-primary checkbox-sm'
+					/>
+					<label htmlFor='pinned-check' className='cursor-pointer text-sm font-medium text-base-content/80 select-none'>
+						置顶文章
+					</label>
+				</div>
 
 				<div className="text-xs font-medium text-base-content/70">文章密码</div>
 				<input
