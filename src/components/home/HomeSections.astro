@@ -6,15 +6,11 @@ import ContactEditPage from "@/components/write/ContactEditPage";
 import Card from "@/components/temple/Card.astro";
 import { loadNavigation } from "@/lib/load-navigation";
 import { loadFriends } from "@/lib/load-friends";
-import {
-  USER_AVATAR,
-  USER_DESCRIPTION,
-  USER_NAME,
-  USER_SIDEBAR_SOCIAL_ICONS,
-} from "@/config";
+import { loadContact } from "@/lib/load-contact";
 
 const navData = loadNavigation();
 const friends = loadFriends();
+const contact = loadContact();
 ---
 
 <div class="flex flex-col gap-12 mt-12">
@@ -51,7 +47,7 @@ const friends = loadFriends();
         联系我
       </h2>
 
-      <ContactEditPage client:only="react" initialContact={{ name: USER_NAME || "", description: USER_DESCRIPTION || "", avatar: USER_AVATAR || "", socials: USER_SIDEBAR_SOCIAL_ICONS }} />
+      <ContactEditPage client:only="react" initialContact={contact} />
     </Card>
   </section>
 </div>
