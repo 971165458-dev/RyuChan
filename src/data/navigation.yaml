@@ -1,6 +1,102 @@
 - title: 开发工具
   icon: lucide:code
   items:
+    - name: Telegram
+      avatar: https://cdn.phototourl.com/free/2026-04-17-f9dd10ed-b476-4800-8f29-533baf3c082a.png
+      url: https://telegram.org/
+      category: 开发工具
+      description: 跨平台的即时通讯软件(纸飞机)
+      badge: 纸飞机
+      badgeIcon: lucide:award
+      badgeColor: '#0a9ae4'
+    - name: X
+      avatar: https://cdn.phototourl.com/free/2026-04-17-6c61e698-1031-4acd-b712-3b0d20389a48.png
+      url: https://x.com/
+      category: 开发工具
+      description: 国外人都在用的微博(推特)
+      badge: 推特
+      badgeIcon: lucide:award
+      badgeColor: '#000000'
+    - name: TikTok
+      avatar: https://cdn.phototourl.com/member/2026-04-17-9c6d5343-fd8c-41a0-8ae3-5b774705d69e.webp
+      url: https://www.tiktok.com/
+      category: ''
+      description: 国外人都在用的抖音
+      badge: 抖音
+      badgeIcon: lucide:award
+      badgeColor: '#010101'
+    - name: Google
+      avatar: https://cdn.phototourl.com/free/2026-04-17-08c19452-1578-4eb0-bee3-947526730092.png
+      url: https://www.google.cn/
+      category: 开发工具
+      description: 最强大的搜索引擎谷歌
+      badge: 谷歌
+      badgeIcon: lucide:award
+      badgeColor: '#ff7f04'
+    - name: Gmail
+      avatar: https://cdn.phototourl.com/member/2026-04-17-41450d8d-bd89-4c89-8a1c-4f1893730437.png
+      url: https://workspace.google.com/intl/zh-CN/gmail/
+      category: 开发工具
+      description: 谷歌的免费网络邮件服务
+      badge: 谷歌邮箱
+      badgeIcon: lucide:award
+      badgeColor: '#f26472'
+    - name: Gemini
+      avatar: https://cdn.phototourl.com/member/2026-04-22-aa1d8f99-9b4a-4322-86f1-1602d6c34fb7.webp
+      url: https://gemini.google.com/
+      category: 开发工具
+      description: 谷歌公司开发的多模态大型语言模型系列
+      badge: 谷歌Ai
+      badgeIcon: lucide:award
+      badgeColor: '#826bfb'
+    - name: Shadowrocket
+      avatar: https://cdn.phototourl.com/free/2026-04-17-3cd5fd0c-a85f-4804-ab54-f93d51c70b25.webp
+      url: https://apps.apple.com/us/app/shadowrocket/id932747118
+      category: 开发工具
+      description: IOS端最好用的加速器(小火箭)
+      badge: 小火箭
+      badgeIcon: lucide:award
+      badgeColor: '#6f9deb'
+    - name: YouTube
+      avatar: https://cdn.phototourl.com/free/2026-04-17-a4633e7a-07c3-4fc6-8972-a9cc48fe911f.png
+      url: https://www.youtube.com/
+      category: 开发工具
+      description: 全球最大的视频分享平台(油管)
+      badge: 油管
+      badgeIcon: lucide:award
+      badgeColor: '#f34336'
+    - name: Instagram
+      avatar: https://cdn.phototourl.com/free/2026-04-17-ed8b70e9-19a9-4e49-8a00-1eb279832602.png
+      url: https://www.instagram.com/
+      category: 开发工具
+      description: 国外人都在用的小红书（ig·ins）
+      badge: ig·ins
+      badgeIcon: lucide:award
+      badgeColor: '#7157ba'
+    - name: Facebook
+      avatar: https://cdn.phototourl.com/free/2026-04-17-e5aec287-925b-4a12-8d1d-23847e7ce245.png
+      url: https://www.facebook.com/
+      category: 开发工具
+      description: 全球最大的社交网络服务平台(脸书)
+      badge: 脸书
+      badgeIcon: lucide:award
+      badgeColor: '#4051b5'
+    - name: WhatsApp
+      avatar: https://cdn.phototourl.com/free/2026-04-17-8ce5a079-7bb0-449c-95d5-125a0c2c103a.png
+      url: https://www.whatsapp.com/
+      category: ''
+      description: 跨平台即时通讯应用程序
+      badge: WhatsApp
+      badgeIcon: lucide:award
+      badgeColor: '#40c251'
+    - name: ChatGPT
+      avatar: https://cdn.phototourl.com/member/2026-04-22-16a4578c-129e-4bf4-9460-0ff342b65488.webp
+      url: https://chatgpt.com/
+      category: 开发工具
+      description: 由‌OpenAI 研发的对话式人工智能模型‌
+      badge: ChatGPT
+      badgeIcon: lucide:award
+      badgeColor: '#0eb88a'
     - name: Vercel
       avatar: https://api.iconify.design/skill-icons/vercel-light.svg
       description: 现代化的前端部署平台
