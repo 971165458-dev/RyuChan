@@ -33,6 +33,16 @@ export function sortPostsByDate(posts: CollectionEntry<"blog">[]): CollectionEnt
  * @returns 排序后的文章 (置顶文章优先，然后是按日期排序)
  */
 export function sortPostsByPinAndDate(posts: CollectionEntry<"blog">[]): CollectionEntry<"blog">[] {
+  const unordered = posts.filter(post => post.data.order === undefined);
+  const ordered = posts.filter(post => post.data.order !== undefined);
+
+  if (ordered.length) {
+    return [
+      ...sortPostsByPinAndDate(unordered),
+      ...ordered.sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0)),
+    ];
+  }
+
   const topPosts = posts.filter((blog: CollectionEntry<"blog">) => blog.data.badge === "Pin");
   const otherPosts = posts.filter((blog: CollectionEntry<"blog">) => blog.data.badge !== "Pin");
 

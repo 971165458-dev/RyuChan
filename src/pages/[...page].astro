@@ -15,6 +15,7 @@ import {
 import { generatePageLinks } from "@utils/blogUtils";
 import { getMainBlogPaginationPaths } from "@utils/paginationUtils";
 import HomeSections from "@components/home/HomeSections.astro";
+import ArticleOrderLink from "@components/ArticleOrderLink";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   return getMainBlogPaginationPaths({ paginate });
@@ -125,6 +126,7 @@ const currentPage = (page as Page & { currentPage?: number }).currentPage ?? pag
   </CardGroup>
 
   <!-- Blog Post List -->
+  {currentPage === 1 && <ArticleOrderLink client:only="react" />}
   <CardGroup cols="1">
     {
       page.data.map((blog: Post) => (

@@ -1,10 +1,11 @@
-import React, { useState, useMemo, useRef } from 'react';
-import { Archive, BookOpen, Calendar, Trash2, X } from 'lucide-react';
+import React, { useEffect, useState, useMemo, useRef } from 'react';
+import { Archive, ArrowDown, ArrowUp, BookOpen, Calendar, Save, Trash2, X } from 'lucide-react';
 import dayjs from 'dayjs';
 import { toast, Toaster } from 'sonner';
 import { useAuthStore } from '@/components/write/hooks/use-auth';
 import { batchDeleteBlogs } from '@/components/write/services/batch-delete';
 import { readFileAsText } from '@/lib/file-utils';
+import { saveBlogOrder } from '@/components/write/services/save-blog-order';
 
 interface Post {
     slug: string;
@@ -34,7 +35,35 @@ export default function ArchiveList({ posts, labels, dateFormat }: ArchiveListPr
     const [editMode, setEditMode] = useState(false);
     const [selectedSlugs, setSelectedSlugs] = useState<Set<string>>(new Set());
     const [deleting, setDeleting] = useState(false);
+    const [sortMode, setSortMode] = useState(false);
+    const [savingOrder, setSavingOrder] = useState(false);
+    const [orderedPosts, setOrderedPosts] = useState(posts);
     const keyInputRef = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        if (isAuth && new URLSearchParams(window.location.search).get('sort') === '1') setSortMode(true);
+    }, [isAuth]);
+
+    const movePost = (index: number, direction: -1 | 1) => {
+        const target = index + direction;
+        if (target < 0 || target >= orderedPosts.length) return;
+        const next = [...orderedPosts];
+        [next[index], next[target]] = [next[target], next[index]];
+        setOrderedPosts(next);
+    };
+
+    const handleSaveOrder = async () => {
+        try {
+            setSavingOrder(true);
+            await saveBlogOrder(orderedPosts.map(post => post.slug));
+            toast.success('文章顺序已保存，部署完成后生效');
+            setSortMode(false);
+        } catch (error: any) {
+            toast.error(error?.message || '保存排序失败');
+        } finally {
+            setSavingOrder(false);
+        }
+    };
 
     const groupedPosts = useMemo(() => {
         const groups = new Map<string, Map<string, Post[]>>();
@@ -171,7 +200,16 @@ export default function ArchiveList({ posts, labels, dateFormat }: ArchiveListPr
                         </div>
                     </div>
                     <div className="flex items-center gap-2">
-                        {editMode ? (
+                        {sortMode ? (
+                            <>
+                                <button onClick={() => { setOrderedPosts(posts); setSortMode(false); }} disabled={savingOrder} className="btn btn-ghost btn-sm gap-2">
+                                    <X className="w-4 h-4" />取消
+                                </button>
+                                <button onClick={handleSaveOrder} disabled={savingOrder} className="btn btn-primary btn-sm gap-2">
+                                    <Save className="w-4 h-4" />{savingOrder ? '保存中…' : '保存顺序'}
+                                </button>
+                            </>
+                        ) : editMode ? (
                             <>
                                 <button
                                     onClick={() => {
@@ -206,10 +244,13 @@ export default function ArchiveList({ posts, labels, dateFormat }: ArchiveListPr
                                 </button>
                             </>
                         ) : (
-                            <button onClick={toggleEditMode} className="btn btn-outline btn-error btn-sm gap-2">
-                                <Trash2 className="w-4 h-4" />
-                                <span>批量删除</span>
-                            </button>
+                            <>
+                                {isAuth && <button onClick={() => setSortMode(true)} className="btn btn-primary btn-sm gap-2">排序文章</button>}
+                                <button onClick={toggleEditMode} className="btn btn-outline btn-error btn-sm gap-2">
+                                    <Trash2 className="w-4 h-4" />
+                                    <span>批量删除</span>
+                                </button>
+                            </>
                         )}
                         <a href="/blog" className="btn btn-outline btn-sm gap-2">
                             <BookOpen className="w-4 h-4" />
@@ -223,7 +264,21 @@ export default function ArchiveList({ posts, labels, dateFormat }: ArchiveListPr
 
             <div className="bg-base-100 rounded-2xl shadow-lg w-full p-4 sm:p-6">
                 <div className="archives-container">
-                    {years.length > 0 ? (
+                    {sortMode ? (
+                        <ol className="space-y-3">
+                            {orderedPosts.map((post, index) => (
+                                <li key={post.slug} className="flex items-center gap-3 rounded-2xl border border-base-200 bg-base-100 p-3 shadow-sm">
+                                    <span className="w-8 text-center font-bold text-base-content/40">{index + 1}</span>
+                                    <div className="min-w-0 flex-1">
+                                        <p className="truncate font-semibold">{post.data.title}</p>
+                                        <p className="truncate text-xs text-base-content/50">/{post.slug}</p>
+                                    </div>
+                                    <button onClick={() => movePost(index, -1)} disabled={index === 0 || savingOrder} className="btn btn-square btn-sm btn-ghost" aria-label={`上移 ${post.data.title}`}><ArrowUp className="h-4 w-4" /></button>
+                                    <button onClick={() => movePost(index, 1)} disabled={index === orderedPosts.length - 1 || savingOrder} className="btn btn-square btn-sm btn-ghost" aria-label={`下移 ${post.data.title}`}><ArrowDown className="h-4 w-4" /></button>
+                                </li>
+                            ))}
+                        </ol>
+                    ) : years.length > 0 ? (
                         <div className="archives-timeline">
                             {years.map((year) => (
                                 <div key={year} className="timeline-year">

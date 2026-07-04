@@ -12,6 +12,7 @@ const blog = defineCollection({
     draft: z.boolean().default(false),
     encrypted: z.boolean().default(false),
     passwordGroup: z.string().optional(),
+    order: z.number().int().nonnegative().optional(),
     categories: z
       .array(z.string())
       .refine((items) => new Set(items).size === items.length, {
