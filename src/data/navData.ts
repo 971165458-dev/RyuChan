@@ -64,17 +64,6 @@ export const NAV_DATA: NavCategory[] = [
                 badgeColor: "sky"
             },
             {
-                name: "Iconfont",
-                avatar: "https://img.131714.xyz/file/Logo/DEPF9Ovv.png",
-                description: "阿里巴巴图标库",
-                url: "https://www.iconfont.cn/",
-                category: "图标设计",
-                id: "DEV004",
-                badge: "国内访问更快",
-                badgeIcon: "lucide:globe",
-                badgeColor: "rose"
-            },
-            {
                 name: "Shields",
                 avatar: "https://shields.io/img/logo.png",
                 description: "为项目生成各种徽章",
@@ -112,17 +101,6 @@ export const NAV_DATA: NavCategory[] = [
                 badge: "免费好用",
                 badgeIcon: "lucide:gift",
                 badgeColor: "amber"
-            },
-            {
-                name: "Cloudflare",
-                avatar: "https://www.cloudflare.com/favicon.ico",
-                description: "全球领先的CDN和安全服务",
-                url: "https://dash.cloudflare.com/login",
-                category: "域名托管服务",
-                id: "SRV002",
-                badge: "性能和安全兼备",
-                badgeIcon: "lucide:shield",
-                badgeColor: "sky"
             },
             {
                 name: "EdgeOne",
