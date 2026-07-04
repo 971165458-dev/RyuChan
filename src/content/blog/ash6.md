@@ -1,4 +1,5 @@
 ---
+order: 2
 title: 飞机群组敏感限制
 description: 加不进群组按照教程操作即可
 pubDate: 2026-04-18T03:15

@@ -1,4 +1,5 @@
 ---
+order: 1
 title: 飞机登录教程
 description: 按照教程登录，实在不懂的截图给客服
 pubDate: 2026-04-18T03:08

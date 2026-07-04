@@ -1,4 +1,5 @@
 ---
+order: 3
 title: 飞机通行密钥(Passkeys)设置教程
 description: 按照教程操作，实在不懂的联系客服
 pubDate: 2026-04-18T02:43
