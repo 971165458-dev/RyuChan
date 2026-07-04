@@ -30,6 +30,25 @@ export function WriteEditor() {
 		}
 	}
 
+	const insertVideo = () => {
+		const input = window.prompt('请输入视频链接（支持 YouTube、Bilibili、MP4、WebM）')?.trim()
+		if (!input) return
+		try {
+			const url = new URL(input)
+			if (!['http:', 'https:'].includes(url.protocol)) throw new Error()
+			const youtubeId = url.hostname === 'youtu.be' ? url.pathname.slice(1) : url.hostname.includes('youtube.com') ? url.searchParams.get('v') : ''
+			const bilibiliId = url.hostname.includes('bilibili.com') ? url.pathname.match(/\/video\/(BV[\w]+)/i)?.[1] : ''
+			const embed = youtubeId
+				? `<iframe src="https://www.youtube.com/embed/${youtubeId}" title="YouTube video" allowfullscreen loading="lazy"></iframe>`
+				: bilibiliId
+					? `<iframe src="https://player.bilibili.com/player.html?bvid=${bilibiliId}" title="Bilibili video" allowfullscreen loading="lazy"></iframe>`
+					: `<video src="${url.href.replace(/"/g, '%22')}" controls playsinline preload="metadata"></video>`
+			insertText(`\n<div class="article-video">\n${embed}\n</div>\n`)
+		} catch {
+			window.alert('视频链接无效，请输入完整的 http 或 https 地址')
+		}
+	}
+
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
 		const textarea = textareaRef.current
 		if (!textarea) return
@@ -176,6 +195,12 @@ export function WriteEditor() {
 					value={form.slug}
 					onChange={e => updateForm({ slug: e.target.value.toLowerCase() })}
 				/>
+			</div>
+			<div className='mb-3 flex items-center gap-2'>
+				<button type='button' onClick={insertVideo} className='btn btn-sm btn-outline rounded-xl gap-2'>
+					<span aria-hidden='true'>▶</span> 插入视频
+				</button>
+				<span className='text-xs text-base-content/50'>支持 YouTube、Bilibili 与视频直链</span>
 			</div>
 			<textarea
 				ref={textareaRef}
