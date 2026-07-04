@@ -106,15 +106,6 @@
       badge: Astro 官方推荐
       badgeIcon: lucide:star
       badgeColor: amber
-    - name: Iconfont
-      avatar: https://www.iconfont.cn/favicon.ico
-      description: 阿里巴巴图标库
-      url: https://www.iconfont.cn/
-      category: 开发工具
-      id: DEV004
-      badge: 国内访问更快
-      badgeIcon: lucide:globe
-      badgeColor: rose
     - name: Pomo
       avatar: https://pomo.mom/favicon.ico
       url: https://pomo.mom/
@@ -123,26 +114,9 @@
       badge: 海量原盘资源
       badgeIcon: lucide:film
       badgeColor: '#63adf1'
-    - name: Clarity
-      avatar: https://picbed.131714.xyz/picbed/20250726225237829.png
-      url: https://clarity.microsoft.com/
-      category: ''
-      description: 微软的用户行为分析工具
-      badge: 企业级分析
-      badgeIcon: lucide:award
-      badgeColor: '#2571cb'
 - title: 服务平台
   icon: lucide:server
-  items:
-    - name: Cloudflare
-      avatar: https://www.cloudflare.com/favicon.ico
-      description: 全球领先的CDN和安全服务
-      url: https://dash.cloudflare.com/login
-      category: 域名管理
-      id: SRV002
-      badge: 性能和安全兼备
-      badgeIcon: lucide:shield
-      badgeColor: sky
+  items: []
 - title: 娱乐资源
   icon: lucide:image
   items:
