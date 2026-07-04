@@ -70,10 +70,20 @@ const isEncrypted = blog.data.encrypted;
     infoIcon="lucide:info"
   >
     <div class="flex justify-end">
-      <a href={`/write?slug=${blog.slug}`} class="btn btn-primary btn-sm text-white" aria-label="Edit Article">
+      <a id="authenticated-edit-link" href={`/write?slug=${blog.slug}`} class="hidden btn btn-primary btn-sm text-white" aria-label="Edit Article">
         <Icon name="lucide:edit" class="w-4 h-4" />
         <span class="hidden sm:inline">Edit</span>
       </a>
+      <script is:inline>
+        (() => {
+          const showAuthenticatedEditLink = () => {
+            const link = document.getElementById('authenticated-edit-link');
+            if (link && (sessionStorage.getItem('github_token') || sessionStorage.getItem('p_info'))) link.classList.remove('hidden');
+          };
+          showAuthenticatedEditLink();
+          document.addEventListener('astro:page-load', showAuthenticatedEditLink, { once: true });
+        })();
+      </script>
     </div>
     <!-- Article info using PostInfo component -->
     <PostInfo

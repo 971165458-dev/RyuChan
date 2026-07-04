@@ -425,12 +425,12 @@ export default function FriendsEditPage({ initialFriends = [] }: Props) {
                   {saving ? '保存中...' : '保存'}
                 </button>
               </>
-            ) : (
+            ) : isAuth ? (
               <button onClick={handleEnterEditMode} className="btn btn-sm btn-primary gap-2 rounded-xl font-semibold shadow-lg shadow-primary/20">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
                 编辑
               </button>
-            )}
+            ) : null}
           </div>
       </div>
 
@@ -540,11 +540,11 @@ export default function FriendsEditPage({ initialFriends = [] }: Props) {
       ) : (
         <div className="flex flex-col items-center justify-center py-24 text-center space-y-4 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
           <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="text-base-content/20"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
-          <p className="text-base-content/50">还没有好友，点击"编辑"开始添加</p>
-          <button onClick={handleEnterEditMode} className="btn btn-primary btn-sm gap-2 font-semibold">
+          <p className="text-base-content/50">暂无服务</p>
+          {isAuth && <button onClick={handleEnterEditMode} className="btn btn-primary btn-sm gap-2 font-semibold">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
             编辑
-          </button>
+          </button>}
         </div>
       )}
     </>

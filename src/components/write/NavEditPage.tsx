@@ -645,9 +645,9 @@ export default function NavEditPage({ initialNavData = [] }: Props) {
                 <button onClick={openAddPage} className="btn btn-sm btn-outline gap-1 rounded-xl font-semibold">{svg.plus} 添加</button>
                 <button onClick={handleSaveAll} disabled={saving} className="btn btn-sm btn-primary px-6 shadow-lg shadow-primary/20 font-semibold">{saving ? '保存中...' : '保存'}</button>
               </div>
-            ) : (
+            ) : isAuth ? (
               <button onClick={handleEnterEditMode} className="btn btn-sm btn-primary gap-2 rounded-xl font-semibold shadow-lg shadow-primary/20 shrink-0">{svg.edit} 编辑</button>
-            )}
+            ) : null}
           </div>
 
           <div className="flex gap-3 flex-wrap justify-center" id="category-filters">
@@ -673,7 +673,7 @@ export default function NavEditPage({ initialNavData = [] }: Props) {
 
           {navData.length === 0 && !globalEditMode && (
             <div className="flex flex-col items-center justify-center py-24 text-center space-y-4">
-              <p className="text-base-content/50">还没有导航数据，点击"编辑"开始添加</p>
+              <p className="text-base-content/50">暂无导航数据</p>
             </div>
           )}
         </div>

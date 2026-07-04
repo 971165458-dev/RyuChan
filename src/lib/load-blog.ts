@@ -7,14 +7,8 @@ import dayjs from 'dayjs'
 import { decrypt } from './aes256-util'
 
 export async function loadBlog(slug: string): Promise<{ form: PublishForm, cover?: string }> {
-    let token: string | undefined
-    if (await hasAuth()) {
-        try {
-            token = await getAuthToken()
-        } catch (e) {
-            console.warn('Failed to get auth token, trying public access', e)
-        }
-    }
+    if (!(await hasAuth())) throw new Error('请先导入 GitHub 私钥再编辑文章')
+    const token = await getAuthToken()
     
     let path = `src/content/blog/${slug}.md`
     let content = await readTextFileFromRepo(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, path, GITHUB_CONFIG.BRANCH)
@@ -53,11 +47,7 @@ export async function loadBlog(slug: string): Promise<{ form: PublishForm, cover
     let md = body
     let password = ''
     if (data.encrypted) {
-        try {
-            const daily = await fetch('/daily-password.json', { cache: 'no-store' }).then(response => response.ok ? response.json() : null)
-            password = String(daily?.passwords?.[data.passwordGroup] || daily?.password || '')
-        } catch {}
-        password ||= window.prompt('请输入文章密码以继续编辑') || ''
+        password = window.prompt('请输入文章密码以继续编辑') || ''
         if (!password) throw new Error('已取消加密文章编辑')
         try {
             md = await decrypt(body.trim(), password)

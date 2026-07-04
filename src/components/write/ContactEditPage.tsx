@@ -45,7 +45,7 @@ export default function ContactEditPage({ initialContact }: { initialContact: Co
           <button className="btn btn-sm btn-outline" onClick={() => setContact(prev => ({ ...prev, items: [...prev.items, { ...emptyItem }] }))}>添加联系方式</button>
           <button className="btn btn-sm btn-outline" disabled={isAuth} onClick={() => keyInputRef.current?.click()}>{isAuth ? '已导入' : '导入密钥'}</button>
           <button className="btn btn-sm btn-primary" disabled={saving} onClick={save}>{saving ? '保存中...' : '保存'}</button>
-        </div> : <button className="btn btn-sm btn-primary gap-2" onClick={() => setEditing(true)}><Icon icon="lucide:pencil" />编辑</button>}
+        </div> : isAuth ? <button className="btn btn-sm btn-primary gap-2" onClick={() => setEditing(true)}><Icon icon="lucide:pencil" />编辑</button> : null}
       </div>
 
       <div className="flex flex-col sm:flex-row items-center gap-5 mb-8 text-center sm:text-left">
@@ -77,7 +77,7 @@ export default function ContactEditPage({ initialContact }: { initialContact: Co
           </a>
         ))}
       </div>
-      {!editing && contact.items.length === 0 && <p className="text-center py-10 text-base-content/50">暂无联系方式，点击“编辑”添加</p>}
+      {!editing && contact.items.length === 0 && <p className="text-center py-10 text-base-content/50">暂无联系方式</p>}
     </>
   )
 }

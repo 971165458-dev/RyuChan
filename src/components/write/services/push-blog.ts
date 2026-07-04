@@ -1,4 +1,4 @@
-import { toBase64Utf8, getRef, createTree, createCommit, updateRef, createBlob, type TreeItem } from '@/lib/github-client'
+import { toBase64Utf8, getRef, createTree, createCommit, updateRef, createBlob, readTextFileFromRepo, type TreeItem } from '@/lib/github-client'
 import { fileToBase64NoPrefix, hashFileSHA256 } from '@/lib/file-utils'
 import { getAuthToken } from '@/lib/auth'
 import { GITHUB_CONFIG } from '@/consts'
@@ -97,14 +97,29 @@ export async function pushBlog(params: PushBlogParams): Promise<void> {
 
         let password = form.password?.trim() || ''
         const passwordGroup = form.passwordGroup?.trim() || ''
+        let groupSynced = !passwordGroup
         if (password || passwordGroup) {
             try {
-                const daily = await fetch('/daily-password.json', { cache: 'no-store' }).then(response => response.ok ? response.json() : null)
-                const dailyPassword = daily?.passwords?.[passwordGroup] || daily?.password
-                if (Number.isInteger(Number(dailyPassword)) && Number(dailyPassword) >= 1111 && Number(dailyPassword) <= 9999) password = String(dailyPassword)
-            } catch { /* 首次启用前沿用表单密码 */ }
+                const dailySource = await readTextFileFromRepo(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, 'public/daily-password.json', GITHUB_CONFIG.BRANCH)
+                const daily = dailySource ? JSON.parse(dailySource) : null
+                let dailyPassword = passwordGroup ? daily?.passwords?.[passwordGroup] : daily?.password
+
+                if (passwordGroup && daily && !dailyPassword) {
+                    const used = new Set([String(daily.password), ...Object.values(daily.passwords || {}).map(String)])
+                    do dailyPassword = String(crypto.getRandomValues(new Uint16Array(1))[0] % 8889 + 1111)
+                    while (used.has(dailyPassword))
+                    daily.passwords = { ...(daily.passwords || {}), [passwordGroup]: dailyPassword }
+                    daily.updatedAt = new Date().toISOString()
+                    const dailyBlob = await createBlob(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, toBase64Utf8(JSON.stringify(daily, null, 2) + '\n'), 'base64')
+                    treeItems.push({ path: 'public/daily-password.json', mode: '100644', type: 'blob', sha: dailyBlob.sha })
+                }
+
+                const validDailyPassword = Number.isInteger(Number(dailyPassword)) && Number(dailyPassword) >= 1111 && Number(dailyPassword) <= 9999
+                if (validDailyPassword) password = String(dailyPassword)
+                groupSynced = !passwordGroup || validDailyPassword
+            } catch { /* 未分组文章仍可沿用表单密码 */ }
         }
-        if (passwordGroup && !password) throw new Error('无法读取当天密码，请先填写一个 4 位初始密码')
+        if (passwordGroup && (!password || !groupSynced)) throw new Error('无法创建密码组，请检查 GitHub 登录状态后重试')
         if (password && form.fileFormat === 'mdx') {
             throw new Error('加密文章暂不支持 MDX，请选择 Markdown 格式')
         }
