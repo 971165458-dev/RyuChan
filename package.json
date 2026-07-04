@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
+    "test:parser": "node scripts/test-account-parser.mjs",
     "prefetch:music": "node scripts/fetch-music-duration.mjs",
     "prebuild": "node scripts/fetch-music-duration.mjs --progress",
     "build": "astro build && npx pagefind --site ./dist",
