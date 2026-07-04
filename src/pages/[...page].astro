@@ -15,7 +15,6 @@ import {
 import { generatePageLinks } from "@utils/blogUtils";
 import { getMainBlogPaginationPaths } from "@utils/paginationUtils";
 import HomeSections from "@components/home/HomeSections.astro";
-import ArticleOrderLink from "@components/ArticleOrderLink";
 
 export async function getStaticPaths({ paginate }: { paginate: any }) {
   return getMainBlogPaginationPaths({ paginate });
@@ -126,7 +125,23 @@ const currentPage = (page as Page & { currentPage?: number }).currentPage ?? pag
   </CardGroup>
 
   <!-- Blog Post List -->
-  {currentPage === 1 && <ArticleOrderLink client:only="react" />}
+  {currentPage === 1 && (
+    <div class="flex justify-end">
+      <a id="article-order-link" href="/blog/archives?sort=1" class="hidden btn btn-sm btn-primary gap-2 rounded-xl">
+        <Icon name="lucide:arrow-up-down" class="h-4 w-4" />排序文章
+      </a>
+      <script is:inline>
+        (() => {
+          const showArticleOrderLink = () => {
+            const link = document.getElementById('article-order-link');
+            if (link && (sessionStorage.getItem('github_token') || sessionStorage.getItem('p_info'))) link.classList.remove('hidden');
+          };
+          showArticleOrderLink();
+          document.addEventListener('astro:page-load', showArticleOrderLink, { once: true });
+        })();
+      </script>
+    </div>
+  )}
   <CardGroup cols="1">
     {
       page.data.map((blog: Post) => (
