@@ -1,4 +1,24 @@
-name: "857"
-description: "·账号·教程·软件·"
+name: '857'
+description: ·账号·教程·软件·
 avatar: /profile.png
-items: []
+items:
+  - name: 客服QQ
+    avatar: https://cdn.phototourl.com/member/2026-04-17-80c50d45-46c6-42df-ab3b-66925a91f976.webp
+    url: https://tool.gljlw.com/qq/?qq=971165458
+    badge: 在线中
+    description: 售后联系我
+  - name: 购买QQ
+    avatar: /profile.png
+    url: https://tool.gljlw.com/qq/?qq=1226407713
+    badge: 在线中
+    description: 购买联系我
+  - name: Tg客服
+    avatar: https://cdn.phototourl.com/free/2026-04-17-f9dd10ed-b476-4800-8f29-533baf3c082a.png
+    url: https://t.me/dianbaodashen1
+    badge: 在线中
+    description: 售后联系我
+  - name: Tg频道
+    avatar: https://i.hd-r.cn/8f637f26-9578-4cfe-a4c8-1451e687bf66.jpg
+    url: https://t.me/dianbaodashen1
+    badge: 更多服务
+    description: 搜索引擎，防骗指南
