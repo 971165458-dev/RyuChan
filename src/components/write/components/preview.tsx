@@ -122,7 +122,7 @@ export function WritePreview({ form, coverPreviewUrl, onClose }: WritePreviewPro
                             <div className="mt-8">
                                 <article 
                                     id="content"
-                                    className="prose prose-sm md:prose-base prose-code:text-base max-w-none text-justify prose-headings:scroll-mt-20 prose-h1:text-2xl md:prose-h1:text-3xl prose-h2:text-xl md:prose-h2:text-2xl prose-h3:text-lg md:prose-h3:text-xl prose-img:rounded-2xl prose-img:mx-auto prose-img:cursor-pointer"
+                                    className="prose prose-sm md:prose-base prose-code:text-base max-w-none text-justify prose-headings:text-center prose-headings:scroll-mt-20 prose-h1:text-2xl md:prose-h1:text-3xl prose-h2:text-xl md:prose-h2:text-2xl prose-h3:text-lg md:prose-h3:text-xl prose-img:rounded-2xl prose-img:mx-auto prose-img:cursor-pointer"
                                 >
                                     <ReactMarkdown
                                         remarkPlugins={[remarkGfm, remarkMath]}
