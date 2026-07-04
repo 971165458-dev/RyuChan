@@ -2,7 +2,7 @@ import { motion } from 'motion/react'
 import { useWriteStore } from '../../stores/write-store'
 import { TagInput } from '../ui/tag-input'
 import { CustomSelect } from '../ui/custom-select'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 type MetaSectionProps = {
 	delay?: number
@@ -11,6 +11,13 @@ type MetaSectionProps = {
 
 export function MetaSection({ delay = 0, categories = [] }: MetaSectionProps) {
 	const { form, updateForm } = useWriteStore()
+	const [passwordGroups, setPasswordGroups] = useState<string[]>([])
+	useEffect(() => {
+		fetch('/daily-password.json', { cache: 'no-store' })
+			.then(response => response.json())
+			.then(data => setPasswordGroups(Object.keys(data.passwords || {})))
+			.catch(() => {})
+	}, [])
 	// 如果当前选中的分类不在预设列表中，且有值，则默认为自定义模式
 	const [isCustomCategory, setIsCustomCategory] = useState(() => {
 		if (form.categories.length === 0) return false
@@ -58,8 +65,19 @@ export function MetaSection({ delay = 0, categories = [] }: MetaSectionProps) {
 					value={form.password || ''}
 					onChange={e => updateForm({ password: e.target.value })}
 				/>
+				<input
+					type="text"
+					list="password-groups"
+					placeholder="密码组（可选，如：会员文章）"
+					className="input input-bordered w-full bg-base-100 focus:input-primary text-sm"
+					value={form.passwordGroup || ''}
+					onChange={e => updateForm({ passwordGroup: e.target.value })}
+				/>
+				<datalist id="password-groups">
+					{passwordGroups.map(group => <option key={group} value={group} />)}
+				</datalist>
 				<p className="text-[11px] leading-relaxed text-base-content/55">
-					设置后正文会以密文保存；启用每日密码后将自动使用当天的 4 位密码，并于北京时间 00:00 轮换。读者解锁后 12 小时内无需重复输入。
+					填写相同密码组的文章会共用一个每日密码；只填密码组也会启用加密。密码于北京时间 00:00 轮换，读者解锁后 12 小时内无需重复输入。
 				</p>
 
 				<div className="text-xs font-medium text-base-content/70">文件格式</div>

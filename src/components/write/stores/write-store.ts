@@ -47,6 +47,7 @@ const initialForm: PublishForm = {
 	summary: '',
 	hidden: false,
 	password: '',
+	passwordGroup: '',
 	categories: [],
 	fileFormat: 'md' // 默认使用md格式
 }

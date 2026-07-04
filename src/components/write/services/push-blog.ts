@@ -96,12 +96,15 @@ export async function pushBlog(params: PushBlogParams): Promise<void> {
         toast.loading('正在创建文章内容...', { id: toastId })
 
         let password = form.password?.trim() || ''
-        if (password) {
+        const passwordGroup = form.passwordGroup?.trim() || ''
+        if (password || passwordGroup) {
             try {
                 const daily = await fetch('/daily-password.json', { cache: 'no-store' }).then(response => response.ok ? response.json() : null)
-                if (Number.isInteger(Number(daily?.password)) && Number(daily.password) >= 1111 && Number(daily.password) <= 9999) password = String(daily.password)
+                const dailyPassword = daily?.passwords?.[passwordGroup] || daily?.password
+                if (Number.isInteger(Number(dailyPassword)) && Number(dailyPassword) >= 1111 && Number(dailyPassword) <= 9999) password = String(dailyPassword)
             } catch { /* 首次启用前沿用表单密码 */ }
         }
+        if (passwordGroup && !password) throw new Error('无法读取当天密码，请先填写一个 4 位初始密码')
         if (password && form.fileFormat === 'mdx') {
             throw new Error('加密文章暂不支持 MDX，请选择 Markdown 格式')
         }
@@ -115,6 +118,7 @@ export async function pushBlog(params: PushBlogParams): Promise<void> {
             image: coverPath,
             draft: form.hidden,
             encrypted: Boolean(password),
+            passwordGroup: passwordGroup || undefined,
             tags: form.tags,
             categories: form.categories,
             badge: form.badge

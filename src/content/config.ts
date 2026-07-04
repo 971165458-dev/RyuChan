@@ -11,6 +11,7 @@ const blog = defineCollection({
     badge: z.string().optional(),
     draft: z.boolean().default(false),
     encrypted: z.boolean().default(false),
+    passwordGroup: z.string().optional(),
     categories: z
       .array(z.string())
       .refine((items) => new Set(items).size === items.length, {

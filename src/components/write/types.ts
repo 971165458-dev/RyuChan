@@ -7,6 +7,7 @@ export type PublishForm = {
 	summary: string
 	hidden?: boolean
 	password?: string
+	passwordGroup?: string
 	badge?: string
 	category?: string // RyuChan uses categories (array), but form might use single string or array.
 	// I'll adapt to RyuChan schema: categories: string[]

@@ -35,10 +35,10 @@ function splitPost(source) {
 async function currentPasswords() {
   try {
     const data = JSON.parse(await fs.readFile(passwordFile, 'utf8'))
-    if (validPassword(data.password)) return { common: String(data.password), byFile: {} }
+    if (validPassword(data.password)) return { common: String(data.password), groups: data.passwords || {}, byFile: {} }
   } catch {}
   const byFile = process.env.ARTICLE_CURRENT_PASSWORDS ? JSON.parse(process.env.ARTICLE_CURRENT_PASSWORDS) : {}
-  if (process.env.ARTICLE_CURRENT_PASSWORD || Object.keys(byFile).length) return { common: process.env.ARTICLE_CURRENT_PASSWORD, byFile }
+  if (process.env.ARTICLE_CURRENT_PASSWORD || Object.keys(byFile).length) return { common: process.env.ARTICLE_CURRENT_PASSWORD, groups: {}, byFile }
   throw new Error('首次运行需设置 GitHub Secret：ARTICLE_CURRENT_PASSWORD，或按文件设置 ARTICLE_CURRENT_PASSWORDS')
 }
 
@@ -51,22 +51,31 @@ async function rotate() {
     if (/^encrypted:\s*true\s*$/m.test(post.frontmatter)) encryptedPosts.push([file, post])
   }
 
-  const oldPasswords = encryptedPosts.length ? await currentPasswords() : { common: undefined, byFile: {} }
+  const oldPasswords = encryptedPosts.length ? await currentPasswords() : { common: undefined, groups: {}, byFile: {} }
   let newPassword
   do newPassword = String(randomInt(1111, 10000))
   while (newPassword === oldPasswords.common)
 
+  const groups = [...new Set(encryptedPosts.map(([, post]) => post.frontmatter.match(/^passwordGroup:\s*['"]?([^'"\r\n]+)['"]?\s*$/m)?.[1]?.trim()).filter(Boolean))]
+  const newGroupPasswords = Object.fromEntries(groups.map(group => {
+    let password
+    do password = String(randomInt(1111, 10000))
+    while (password === (oldPasswords.groups[group] || oldPasswords.common))
+    return [group, password]
+  }))
+
   const updates = []
   for (const [file, post] of encryptedPosts) {
-    const oldPassword = oldPasswords.byFile[file] || oldPasswords.byFile[path.basename(file, '.md')] || oldPasswords.common
+    const group = post.frontmatter.match(/^passwordGroup:\s*['"]?([^'"\r\n]+)['"]?\s*$/m)?.[1]?.trim()
+    const oldPassword = oldPasswords.byFile[file] || oldPasswords.byFile[path.basename(file, '.md')] || oldPasswords.groups[group] || oldPasswords.common
     if (!oldPassword) throw new Error(`缺少 ${file} 的当前密码`)
     const plainText = decrypt(post.body, oldPassword)
-    updates.push([file, `${post.frontmatter}${encrypt(plainText, newPassword)}\n`])
+    updates.push([file, `${post.frontmatter}${encrypt(plainText, group ? newGroupPasswords[group] : newPassword)}\n`])
   }
 
   for (const [file, content] of updates) await fs.writeFile(file, content)
   const updatedAt = new Date().toLocaleString('sv-SE', { timeZone: 'Asia/Shanghai' }).replace(' ', 'T') + '+08:00'
-  await fs.writeFile(passwordFile, JSON.stringify({ password: newPassword, updatedAt, timezone: 'Asia/Shanghai' }, null, 2) + '\n')
+  await fs.writeFile(passwordFile, JSON.stringify({ password: newPassword, passwords: newGroupPasswords, updatedAt, timezone: 'Asia/Shanghai' }, null, 2) + '\n')
   console.log(`已更新 ${updates.length} 篇加密文章，密码范围验证：${validPassword(newPassword)}`)
 }
 
