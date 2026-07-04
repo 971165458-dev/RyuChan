@@ -97,18 +97,31 @@ export async function pushBlog(params: PushBlogParams): Promise<void> {
 
         let password = form.password?.trim() || ''
         const passwordGroup = form.passwordGroup?.trim() || ''
-        let groupSynced = !passwordGroup
+        const accessName = passwordGroup || form.title.trim()
+        let passwordSynced = false
         if (password || passwordGroup) {
             try {
                 const dailySource = await readTextFileFromRepo(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, 'public/daily-password.json', GITHUB_CONFIG.BRANCH)
                 const daily = dailySource ? JSON.parse(dailySource) : null
-                let dailyPassword = passwordGroup ? daily?.passwords?.[passwordGroup] : daily?.password
+                let dailyPassword = daily?.passwords?.[accessName]
+                let dailyChanged = false
 
-                if (passwordGroup && daily && !dailyPassword) {
-                    const used = new Set([String(daily.password), ...Object.values(daily.passwords || {}).map(String)])
-                    do dailyPassword = String(crypto.getRandomValues(new Uint16Array(1))[0] % 8889 + 1111)
-                    while (used.has(dailyPassword))
-                    daily.passwords = { ...(daily.passwords || {}), [passwordGroup]: dailyPassword }
+                if (daily && !dailyPassword) {
+                    const used = new Set(Object.values(daily.passwords || {}).map(String))
+                    const requestedPasswordIsValid = Number.isInteger(Number(password)) && Number(password) >= 1111 && Number(password) <= 9999
+                    dailyPassword = requestedPasswordIsValid && !used.has(password) ? password : ''
+                    while (!dailyPassword || used.has(dailyPassword)) {
+                        dailyPassword = String(crypto.getRandomValues(new Uint16Array(1))[0] % 8889 + 1111)
+                    }
+                    daily.passwords = { ...(daily.passwords || {}), [accessName]: dailyPassword }
+                    dailyChanged = true
+                }
+                if (daily && passwordGroup && !(daily.groups || []).includes(passwordGroup)) {
+                    daily.groups = [...(daily.groups || []), passwordGroup]
+                    dailyChanged = true
+                }
+                if (dailyChanged) {
+                    delete daily.password
                     daily.updatedAt = new Date().toISOString()
                     const dailyBlob = await createBlob(token, GITHUB_CONFIG.OWNER, GITHUB_CONFIG.REPO, toBase64Utf8(JSON.stringify(daily, null, 2) + '\n'), 'base64')
                     treeItems.push({ path: 'public/daily-password.json', mode: '100644', type: 'blob', sha: dailyBlob.sha })
@@ -116,10 +129,10 @@ export async function pushBlog(params: PushBlogParams): Promise<void> {
 
                 const validDailyPassword = Number.isInteger(Number(dailyPassword)) && Number(dailyPassword) >= 1111 && Number(dailyPassword) <= 9999
                 if (validDailyPassword) password = String(dailyPassword)
-                groupSynced = !passwordGroup || validDailyPassword
-            } catch { /* 未分组文章仍可沿用表单密码 */ }
+                passwordSynced = validDailyPassword
+            } catch { /* 统一在下方阻止未同步密码的文章发布 */ }
         }
-        if (passwordGroup && (!password || !groupSynced)) throw new Error('无法创建密码组，请检查 GitHub 登录状态后重试')
+        if ((password || passwordGroup) && !passwordSynced) throw new Error('无法同步文章密码，请检查 GitHub 登录状态后重试')
         if (password && form.fileFormat === 'mdx') {
             throw new Error('加密文章暂不支持 MDX，请选择 Markdown 格式')
         }

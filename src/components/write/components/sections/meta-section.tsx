@@ -15,7 +15,7 @@ export function MetaSection({ delay = 0, categories = [] }: MetaSectionProps) {
 	useEffect(() => {
 		fetch('/daily-password.json', { cache: 'no-store' })
 			.then(response => response.json())
-			.then(data => setPasswordGroups(Object.keys(data.passwords || {})))
+			.then(data => setPasswordGroups(data.groups || []))
 			.catch(() => {})
 	}, [])
 	// 如果当前选中的分类不在预设列表中，且有值，则默认为自定义模式
@@ -77,7 +77,7 @@ export function MetaSection({ delay = 0, categories = [] }: MetaSectionProps) {
 					{passwordGroups.map(group => <option key={group} value={group} />)}
 				</datalist>
 				<p className="text-[11px] leading-relaxed text-base-content/55">
-					填写相同密码组的文章会共用一个每日密码；只填密码组也会启用加密。密码于北京时间 00:00 轮换，读者解锁后 12 小时内无需重复输入。
+					填写相同密码组的文章会共用一个每日密码；不填密码组时将以文章标题显示独立密码。密码每天北京时间 00:00 后自动轮换，读者解锁后 12 小时内无需重复输入。
 				</p>
 
 				<div className="text-xs font-medium text-base-content/70">文件格式</div>
