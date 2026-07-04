@@ -123,6 +123,14 @@
       badge: 海量原盘资源
       badgeIcon: lucide:film
       badgeColor: '#63adf1'
+    - name: Clarity
+      avatar: https://picbed.131714.xyz/picbed/20250726225237829.png
+      url: https://clarity.microsoft.com/
+      category: ''
+      description: 微软的用户行为分析工具
+      badge: 企业级分析
+      badgeIcon: lucide:award
+      badgeColor: '#2571cb'
 - title: 服务平台
   icon: lucide:server
   items:
