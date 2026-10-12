@@ -14,7 +14,7 @@ badge: ''
 
 没有账号快速注册一个即可，大文件直接保存自己网盘再下载
 -----------------
-软件商店：https://www.ilanzou.com/s/qv06zQrt
+安卓软件商店：https://www.ilanzou.com/s/JijCClnU
 
 edge浏览器：https://www.ilanzou.com/s/kIemL7Gy
 
