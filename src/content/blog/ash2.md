@@ -1,4 +1,5 @@
 ---
+order: 6
 title: 飞机密码密钥(Passkeys)设置教程
 description: 按照教程操作，实在不懂的联系客服
 pubDate: 2026-04-18T02:43
