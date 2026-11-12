@@ -2,7 +2,7 @@
   icon: lucide:code
   items:
     - name: Telegram
-      avatar: https://cdn.phototourl.com/free/2026-04-17-f9dd10ed-b476-4800-8f29-533baf3c082a.png
+      avatar: https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/bf/0b/bc/bf0bbc9b-79b5-07c5-f803-048d7cad9b2f/Telegram-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg
       url: https://telegram.org/
       category: 开发工具
       description: 跨平台的即时通讯软件(纸飞机)
@@ -10,7 +10,7 @@
       badgeIcon: lucide:award
       badgeColor: '#0a9ae4'
     - name: X
-      avatar: https://cdn.phototourl.com/free/2026-04-17-6c61e698-1031-4acd-b712-3b0d20389a48.png
+      avatar: https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/70/88/88/708888e7-81a4-8a4a-52d7-9a901a1725ff/ProductionAppIcon-0-0-1x_U007emarketing-0-8-0-0-0-85-220.png/512x512bb.jpg
       url: https://x.com/
       category: 开发工具
       description: 国外人都在用的微博(推特)
@@ -26,7 +26,7 @@
       badgeIcon: lucide:award
       badgeColor: '#010101'
     - name: Google
-      avatar: https://cdn.phototourl.com/free/2026-04-17-08c19452-1578-4eb0-bee3-947526730092.png
+      avatar: https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/5f/6e/38/5f6e38e9-d54d-c05c-7ac4-8c5e0b3a0d46/AppIcon-0-0-1x_U007epad-0-0-0-1-0-0-sRGB-85-220.png/512x512bb.jpg
       url: https://www.google.cn/
       category: 开发工具
       description: 最强大的搜索引擎谷歌
@@ -50,7 +50,7 @@
       badgeIcon: lucide:award
       badgeColor: '#826bfb'
     - name: Shadowrocket
-      avatar: https://cdn.phototourl.com/free/2026-04-17-3cd5fd0c-a85f-4804-ab54-f93d51c70b25.webp
+      avatar: https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/4f/4c/02/4f4c0272-2fe6-777f-be0e-f4fe43c30ce4/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg
       url: https://apps.apple.com/us/app/shadowrocket/id932747118
       category: 开发工具
       description: IOS端最好用的加速器(小火箭)
@@ -58,7 +58,7 @@
       badgeIcon: lucide:award
       badgeColor: '#6f9deb'
     - name: YouTube
-      avatar: https://cdn.phototourl.com/free/2026-04-17-a4633e7a-07c3-4fc6-8972-a9cc48fe911f.png
+      avatar: https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/84/80/65/84806526-8b53-6e37-8e01-8369c879d30a/logo_youtube_2024_q4_color-0-0-1x_U007emarketing-0-0-0-7-0-0-0-85-220.png/512x512bb.jpg
       url: https://www.youtube.com/
       category: 开发工具
       description: 全球最大的视频分享平台(油管)
@@ -66,7 +66,7 @@
       badgeIcon: lucide:award
       badgeColor: '#f34336'
     - name: Instagram
-      avatar: https://cdn.phototourl.com/free/2026-04-17-ed8b70e9-19a9-4e49-8a00-1eb279832602.png
+      avatar: https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f7/5f/80/f75f80a8-4726-0c0d-783d-8bbf1d31da37/Prod-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg
       url: https://www.instagram.com/
       category: 开发工具
       description: 国外人都在用的小红书（ig·ins）
@@ -74,7 +74,7 @@
       badgeIcon: lucide:award
       badgeColor: '#7157ba'
     - name: Facebook
-      avatar: https://cdn.phototourl.com/free/2026-04-17-e5aec287-925b-4a12-8d1d-23847e7ce245.png
+      avatar: https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/02/cf/0d/02cf0d3b-192c-4d58-40b5-d1b861d643f0/Icon-Production-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg
       url: https://www.facebook.com/
       category: 开发工具
       description: 全球最大的社交网络服务平台(脸书)
