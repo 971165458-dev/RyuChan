@@ -147,6 +147,21 @@
       badge: 视频生成Ai
       badgeIcon: lucide:award
       badgeColor: '#826bfb'
+    - title: 服务平台
+      icon: lucide:server
+      items: []
+    - title: 娱乐资源
+      icon: lucide:image
+      items:
+    - name: 夸克圈
+      avatar: https://api.iconify.design/material-symbols/cloud-outline.svg
+      description: 影视资源分享平台
+      url: https://www.kuakeq.com
+      category: 影视资源
+      id: ENT002
+      badge: 丰富的影视资源
+      badgeIcon: lucide:film
+      badgeColor: rose
 - title: Useful Resources
   icon: lucide:bookmark
   items: []
