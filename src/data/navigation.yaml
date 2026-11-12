@@ -20,7 +20,7 @@
     - name: TikTok
       avatar: https://cdn.phototourl.com/member/2026-04-17-9c6d5343-fd8c-41a0-8ae3-5b774705d69e.webp
       url: https://www.tiktok.com/
-      category: 开发工具
+      category: ''
       description: 国外人都在用的抖音
       badge: 抖音
       badgeIcon: lucide:award
@@ -76,20 +76,11 @@
     - name: WhatsApp
       avatar: https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/3f/00/4b/3f004b17-4292-838b-922b-587c91807222/AppIcon-0-0-1x_U007epad-0-0-0-1-0-0-sRGB-0-85-220.png/512x512bb.jpg
       url: https://www.whatsapp.com/
-      category: 开发工具
+      category: ''
       description: 跨平台即时通讯应用程序
       badge: WhatsApp
       badgeIcon: lucide:award
       badgeColor: '#40c251'
-      - name: Vercel
-      avatar: https://api.iconify.design/skill-icons/vercel-light.svg
-      description: 现代化的前端部署平台
-      url: https://vercel.com/login?next=%2Fkobaridevs-projects
-      category: 开发工具
-      id: DEV002
-      badge: Astro 官方推荐
-      badgeIcon: lucide:star
-      badgeColor: amber
     - name: ChatGPT
       avatar: https://cdn.phototourl.com/member/2026-04-22-16a4578c-129e-4bf4-9460-0ff342b65488.webp
       url: https://chatgpt.com/
@@ -105,13 +96,12 @@
       description: 由美國人工智慧公司 Anthropic 開發的專有大型語言模型（LLM）系列及 AI 助理
       badge: 克劳德
       badgeIcon: lucide:film
-      badgeColor: '#63adf1'
+      badgeColor: rose
     - name: Grok
       avatar: https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/b8/41/58/b8415899-4484-f49f-fe4c-d4eef17ab384/AppIcon-0-0-1x_U007epad-0-0-0-1-0-0-0-85-220.png/512x512bb.jpg
       description: 由Elon Musk旗下𝕏（原 Twitter）AI（SpaceXSI）開發的生成式人工智慧聊天機器人與AI助手。
       url: https://grok.com/
       category: 开发工具
-      id: ENT002
       badge: 马斯克Ai
       badgeIcon: lucide:film
       badgeColor: rose
@@ -147,12 +137,29 @@
       badge: 视频生成Ai
       badgeIcon: lucide:award
       badgeColor: '#826bfb'
-    - title: 服务平台
-      icon: lucide:server
-      items: []
-    - title: 娱乐资源
-      icon: lucide:image
-      items:
+    - name: Vercel
+      avatar: https://api.iconify.design/skill-icons/vercel-light.svg
+      description: 现代化的前端部署平台
+      url: https://vercel.com/login?next=%2Fkobaridevs-projects
+      category: 开发工具
+      id: DEV002
+      badge: Astro 官方推荐
+      badgeIcon: lucide:star
+      badgeColor: amber
+    - name: Pomo
+      avatar: https://pomo.mom/favicon.ico
+      url: https://pomo.mom/
+      category: 影视资源
+      description: 提供高质量4K原盘影视资源
+      badge: 海量原盘资源
+      badgeIcon: lucide:film
+      badgeColor: '#63adf1'
+- title: 服务平台
+  icon: lucide:server
+  items: []
+- title: 娱乐资源
+  icon: lucide:image
+  items:
     - name: 夸克圈
       avatar: https://api.iconify.design/material-symbols/cloud-outline.svg
       description: 影视资源分享平台
@@ -162,6 +169,3 @@
       badge: 丰富的影视资源
       badgeIcon: lucide:film
       badgeColor: rose
-- title: Useful Resources
-  icon: lucide:bookmark
-  items: []
